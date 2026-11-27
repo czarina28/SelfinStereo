@@ -10,7 +10,7 @@ let language=navigator.language.toLowerCase().startsWith('de')?'de':'en';try{con
 const tr=s=>language==='de'?(translations[s]||s):s;
 const $=id=>document.getElementById(id);let i=0;const tracks=prompts.map(prompt=>({prompt,song:'',artist:'',note:''}));
 function show(id){for(const x of ['intro','editor','result'])$(x).hidden=x!==id}
-function render(){clearLookup();show('editor');$('counter').textContent=tr("Track ")+(i+1)+' / 10';$('progress').value=i+1;$('prompt').textContent=(language==='de'?germanPrompts:prompts)[i];for(const k of ['song','artist','note'])$(k).value=tracks[i][k];$('next').textContent=i===9?tr("Finish record"):tr("Next track");$('song').focus()}
+function render(){clearLookup();show('editor');$('counter').textContent=tr("Track ")+(i+1)+' / 10';$('progress').value=i+1;$('prompt').textContent=(language==='de'?germanPrompts:prompts)[i];for(const k of ['song','artist','note'])$(k).value=tracks[i][k];$('next').textContent=i===9?tr("Finish record"):tr("Next track");$('lookup').focus()}
 function save(){for(const k of ['song','artist','note'])tracks[i][k]=$(k).value.trim()}
 let timer, controller, revision=0;
 function clearLookup(){revision++;clearTimeout(timer);controller?.abort();$('lookup').value='';$('suggestions').replaceChildren()}
